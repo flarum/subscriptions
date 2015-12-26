@@ -13,7 +13,7 @@ export default function addSubscriptionSettings() {
 
     forumItems.add('followAfterReply',
       Switch.component({
-        children: app.translator.trans('core.forum.settings.follow_after_reply'),
+        children: app.translator.trans('flarum-subscriptions.forum.settings.forum_follow_after_reply_label'),
         state: this.user.preferences().followAfterReply,
         onchange: (value, component) => {
           this.preferenceSaver('followAfterReply')(value, component);
@@ -24,7 +24,7 @@ export default function addSubscriptionSettings() {
     //Add Section to SettingsList
     items.add('forum',
       FieldSet.component({
-        label: app.translator.trans('core.forum.settings.forum'),
+        label: app.translator.trans('flarum-subscriptions.forum.settings.forum_heading'),
         className: 'Settings-forum',
         children: forumItems.toArray()
       })

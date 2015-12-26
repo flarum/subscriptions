@@ -19,7 +19,6 @@ app.initializers.add('subscriptions', function () {
   addSubscriptionBadge();
   addSubscriptionControls();
   addSubscriptionFilter();
-  console.log('subscription');
   addSubscriptionSettings();
 
   extend(NotificationGrid.prototype, 'notificationTypes', function (items) {
