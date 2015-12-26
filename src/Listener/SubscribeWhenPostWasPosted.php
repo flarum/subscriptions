@@ -35,7 +35,6 @@ class SubscribeWhenPostWasPosted
         $actor = $event->actor;
 
         if ($actor && $actor->exists && $actor->getPreference('followAfterReply')) {
-
             $post = $event->post;
             $discussion = $post->discussion;
 
