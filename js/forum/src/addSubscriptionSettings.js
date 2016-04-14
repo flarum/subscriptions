@@ -13,5 +13,13 @@ export default function() {
         onchange: this.preferenceSaver('followAfterReply')
       })
     );
+
+    items.add('followNewDiscussions',
+      Switch.component({
+        children: 'Follow new discussions automatically',
+        state: this.user.preferences().followNewDiscussions,
+        onchange: this.preferenceSaver('followNewDiscussions')
+      })
+    );
   });
 }
