@@ -11,17 +11,14 @@
 namespace Flarum\Subscriptions\Listener;
 
 use Flarum\Core\Notification\NotificationSyncer;
-use Flarum\Core\Access\AssertPermissionTrait;
 use Flarum\Core\User;
 use Flarum\Event\ConfigureUserPreferences;
 use Flarum\Event\DiscussionWasStarted;
-use Illuminate\Contracts\Events\Dispatcher;
 use Flarum\Subscriptions\Notification\NewPostBlueprint;
+use Illuminate\Contracts\Events\Dispatcher;
 
 class FollowNewDiscussions
 {
-    use AssertPermissionTrait;
-
     /**
      * @var NotificationSyncer
      */
