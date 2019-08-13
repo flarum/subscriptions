@@ -54,6 +54,7 @@ return [
             $event->add('followAfterReply', 'boolval', false);
         });
         $events->listen(Posted::class, Listener\FollowAfterReply::class);
+        $events->listen(Posted::class, Listener\FollowNewDiscussions::class);
 
         $views->addNamespace('flarum-subscriptions', __DIR__.'/views');
     }

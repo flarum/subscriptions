@@ -13,5 +13,12 @@ export default function() {
         onchange: this.preferenceSaver('followAfterReply')
       })
     );
+    items.add('followNewDiscussions',
+      Switch.component({
+        children: app.translator.trans('flarum-subscriptions.forum.settings.forum_follow_new_discussions_label'),
+        state: this.user.preferences().followNewDiscussions,
+        onchange: this.preferenceSaver('followNewDiscussions')
+      })
+    );
   });
 }
