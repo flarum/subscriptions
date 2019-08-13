@@ -52,6 +52,7 @@ return [
 
         $events->listen(ConfigureUserPreferences::class, function (ConfigureUserPreferences $event) {
             $event->add('followAfterReply', 'boolval', false);
+            $event->add('followNewDiscussions', 'boolval', false);
         });
         $events->listen(Posted::class, Listener\FollowAfterReply::class);
         $events->listen(Posted::class, Listener\FollowNewDiscussions::class);

@@ -11,26 +11,47 @@
 
 namespace Flarum\Subscriptions\Listener;
 
+use Flarum\Notification\NotificationSyncer;
 use Flarum\Post\Event\Posted;
-use Flarum\User\AssertPermissionTrait;
+use Flarum\User\User;
+use Flarum\Subscriptions\Notification\NewPostBlueprint;
 
 class FollowNewDiscussions
 {
-    use AssertPermissionTrait;
+    /**
+     * @var NotificationSyncer
+     */
+    protected $notifications;
+
+    /**
+     * @param NotificationSyncer $notifications
+     */
+    public function __construct(NotificationSyncer $notifications)
+    {
+        $this->notifications = $notifications;
+    }
 
     public function handle(Posted $event)
     {
         $post = $event->post;
 
         $users = User::all()->filter(function ($user) use ($post) {
-            return $user->exists && $user->getPreference('followNewDiscussions') && $post->isVisibleTo($user);
+            return $user->exists
+                && $user->getPreference('followNewDiscussions')
+                && $post->isVisibleTo($user)
+                && !$user->isGuest();
         });
 
         foreach ($users as $user) {
-            $state = $event->post->discussion->stateFor($user);
+            $state = $post->discussion->stateFor($user);
 
             $state->subscription = 'follow';
             $state->save();
         }
+
+        $this->notifications->sync(
+            new NewPostBlueprint($post),
+            $users->all()
+        );
     }
 }
