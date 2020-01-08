@@ -28,7 +28,7 @@ class SubscriptionGambit extends AbstractRegexGambit
 
         $method = $negate ? 'whereNotIn' : 'whereIn';
         $search->getQuery()->$method('id', function ($query) use ($actor, $matches) {
-            $query->selectRaw('discussion_id')
+            $query->select('discussion_id')
                 ->from('discussion_user')
                 ->where('user_id', $actor->id)
                 ->where('subscription', $matches[1] === 'follow' ? 'follow' : 'ignore');
