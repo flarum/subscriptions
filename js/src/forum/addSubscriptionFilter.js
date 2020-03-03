@@ -18,6 +18,10 @@ export default function addSubscriptionFilter() {
     }
   });
 
+  extend(IndexPage.prototype, 'config', function () {
+    app.setTitle(app.translator.trans('flarum-subscriptions.forum.meta.following_title'));
+  });
+
   extend(DiscussionList.prototype, 'requestParams', function(params) {
     if (this.props.params.filter === 'following') {
       params.filter.q = (params.filter.q || '') + ' is:following';
