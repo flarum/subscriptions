@@ -19,7 +19,7 @@ export default function addSubscriptionFilter() {
   });
 
   extend(IndexPage.prototype, 'config', function () {
-    app.setTitle(app.translator.trans('flarum-subscriptions.forum.meta.following_title'));
+    app.setTitle(app.translator.trans('flarum-subscriptions.forum.following.meta_title_text'));
   });
 
   extend(DiscussionList.prototype, 'requestParams', function(params) {
