@@ -18,7 +18,7 @@ class AddDiscussionSubscriptionAttribute
     {
         if ($event->isSerializer(DiscussionSerializer::class)
             && ($state = $event->model->state)) {
-            $event->attributes['subscription'] = $state->subscription ?: false;
+            $event->attributes['subscription'] = $state->subscription ?: null;
         }
     }
 }

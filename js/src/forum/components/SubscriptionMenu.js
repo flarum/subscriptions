@@ -9,7 +9,7 @@ export default class SubscriptionMenu extends Dropdown {
   init() {
     this.options = [
       {
-        subscription: false,
+        subscription: null,
         icon: 'far fa-star',
         label: app.translator.trans('flarum-subscriptions.forum.sub_controls.not_following_button'),
         description: app.translator.trans('flarum-subscriptions.forum.sub_controls.not_following_text')
@@ -63,11 +63,11 @@ export default class SubscriptionMenu extends Dropdown {
       className: 'Button SubscriptionMenu-button ' + buttonClass,
       icon: buttonIcon,
       children: buttonLabel,
-      onclick: this.saveSubscription.bind(this, discussion, ['follow', 'ignore'].indexOf(subscription) !== -1 ? false : 'follow'),
+      onclick: this.saveSubscription.bind(this, discussion, ['follow', 'ignore'].indexOf(subscription) !== -1 ? null : 'follow'),
       title: title
     };
 
-    if ((notifyEmail || notifyAlert) && subscription === false) {
+    if ((notifyEmail || notifyAlert) && subscription === null) {
       buttonProps.config = element => {
         $(element).tooltip({
           container: '.SubscriptionMenu',
