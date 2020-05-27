@@ -60,7 +60,7 @@ export default class SubscriptionMenu extends Dropdown {
       : 'flarum-subscriptions.forum.sub_controls.notify_alert_tooltip'));
 
     const buttonProps = {
-      className: 'Button SubscriptionMenu-button ' + buttonClass,
+      className: 'SplitDropdown-button Button SubscriptionMenu-button ' + buttonClass,
       icon: buttonIcon,
       children: buttonLabel,
       onclick: this.saveSubscription.bind(this, discussion, ['follow', 'ignore'].indexOf(subscription) !== -1 ? false : 'follow'),
@@ -81,11 +81,11 @@ export default class SubscriptionMenu extends Dropdown {
     }
 
     return (
-      <div className="Dropdown ButtonGroup SubscriptionMenu">
+      <div className="Dropdown dropdown Dropdown--split ButtonGroup SubscriptionMenu">
         {Button.component(buttonProps)}
 
         <button className={'Dropdown-toggle Button Button--icon ' + buttonClass} data-toggle="dropdown">
-          {icon('fas fa-caret-down', {className: 'Button-icon'})}
+          {icon('fas fa-caret-down', {className: 'Button-caret'})}
         </button>
 
         <ul className="Dropdown-menu dropdown-menu Dropdown-menu--right">

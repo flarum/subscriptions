@@ -15,6 +15,14 @@
 }
 .SubscriptionMenu .Dropdown-menu {
   min-width: 260px;
+
+  @media @tablet-up {
+    & li:first-child {
+      &, + li.Dropdown-separator {
+        display: block;
+      }
+    }
+  }
 }
 .SubscriptionMenuItem-label {
   padding-left: 25px;
