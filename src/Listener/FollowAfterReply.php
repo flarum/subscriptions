@@ -18,7 +18,7 @@ class FollowAfterReply
         $actor = $event->actor;
 
         if ($actor && $actor->exists && $actor->getPreference('followAfterReply')) {
-            !$actor->isGuest();
+            ! $actor->isGuest();
 
             $state = $event->post->discussion->stateFor($actor);
 

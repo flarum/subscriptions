@@ -22,7 +22,7 @@ class SaveSubscriptionToDatabase
             $actor = $event->actor;
             $subscription = $data['attributes']['subscription'];
 
-            !$actor->isGuest();
+            ! $actor->isGuest();
 
             $state = $discussion->stateFor($actor);
 
