@@ -22,7 +22,7 @@ class SaveSubscriptionToDatabase
             $actor = $event->actor;
             $subscription = $data['attributes']['subscription'];
 
-            ! $actor->isGuest();
+            $actor->assertRegistered();
 
             $state = $discussion->stateFor($actor);
 
