@@ -1,4 +1,4 @@
-import { extend } from 'flarum/extend';
+import { extend, override } from 'flarum/extend';
 import LinkButton from 'flarum/components/LinkButton';
 import IndexPage from 'flarum/components/IndexPage';
 import DiscussionListState from 'flarum/states/DiscussionListState';
@@ -11,16 +11,17 @@ export default function addSubscriptionFilter() {
       params.filter = 'following';
 
       items.add('following', LinkButton.component({
-        href: app.route('index.filter', params),
-        children: app.translator.trans('flarum-subscriptions.forum.index.following_link'),
+        href: app.route('following', params),
         icon: 'fas fa-star'
-      }), 50);
+      }, app.translator.trans('flarum-subscriptions.forum.index.following_link')), 50);
     }
   });
 
-  extend(IndexPage.prototype, 'config', function () {
-    if (m.route() == "/following") {
+  override(IndexPage.prototype, 'setTitle', function (original) {
+    if (m.route.get().startsWith("/following")) {
       app.setTitle(app.translator.trans('flarum-subscriptions.forum.following.meta_title_text'));
+    } else {
+      original();
     }
   });
 
