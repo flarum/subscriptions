@@ -90,12 +90,12 @@ export default class SubscriptionMenu extends Dropdown {
         </button>
 
         <ul className="Dropdown-menu dropdown-menu Dropdown-menu--right">
-          {this.options.map(attrs => {
-            attrs.onclick = this.saveSubscription.bind(this, discussion, attrs.subscription);
-            attrs.active = subscription === attrs.subscription;
-
-            return <li>{SubscriptionMenuItem.component(attrs)}</li>;
-          })}
+          {this.options.map(attrs => <li>{SubscriptionMenuItem.component({
+              ...attrs,
+              onclick: this.saveSubscription.bind(this, discussion, attrs.subscription),
+              active: subscription === attrs.subscription
+            })}</li>
+          )}
         </ul>
       </div>
     );
