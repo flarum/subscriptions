@@ -8,8 +8,6 @@ export default function addSubscriptionFilter() {
     if (app.session.user) {
       const params = app.search.stickyParams();
 
-      params.filter = 'following';
-
       items.add('following', LinkButton.component({
         href: app.route('following', params),
         icon: 'fas fa-star'
