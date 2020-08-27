@@ -26,7 +26,7 @@ export default function addSubscriptionFilter() {
   });
 
   extend(DiscussionListState.prototype, 'requestParams', function(params) {
-    if (this.params.filter === 'following') {
+    if (app.current.get('routeName') === 'following') {
       params.filter.q = (params.filter.q || '') + ' is:following';
     }
   });
