@@ -69,7 +69,7 @@ export default class SubscriptionMenu extends Dropdown {
     };
 
     if ((notifyEmail || notifyAlert) && subscription === false) {
-      buttonAttrs.onupdate = vnode => {
+      buttonAttrs.oncreate = buttonAttrs.onupdate = vnode => {
         $(vnode.dom).tooltip({
           container: '.SubscriptionMenu',
           placement: 'bottom',
