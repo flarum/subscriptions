@@ -16,7 +16,7 @@ export default function addSubscriptionFilter() {
   });
 
   override(IndexPage.prototype, 'setTitle', function (original) {
-    if (m.route.get().startsWith("/following")) {
+    if (app.current.get('routeName') === 'following') {
       app.setTitle(app.translator.trans('flarum-subscriptions.forum.following.meta_title_text'));
     } else {
       original();
