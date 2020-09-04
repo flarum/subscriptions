@@ -1,4 +1,4 @@
-import { extend, override } from 'flarum/extend';
+import { extend } from 'flarum/extend';
 import LinkButton from 'flarum/components/LinkButton';
 import IndexPage from 'flarum/components/IndexPage';
 import DiscussionListState from 'flarum/states/DiscussionListState';
