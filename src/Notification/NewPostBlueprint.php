@@ -65,9 +65,9 @@ class NewPostBlueprint implements BlueprintInterface, MailableInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmailSubject(TranslatorInterface $translator)
+    public function getEmailSubject()
     {
-        return $translator->trans('flarum-subscriptions.email.new_post.subject', ['{title}' => $this->post->discussion->title]);
+        return app(TranslatorInterface::class)->trans('flarum-subscriptions.email.new_post.subject', ['{title}' => $this->post->discussion->title]);
     }
 
     /**
