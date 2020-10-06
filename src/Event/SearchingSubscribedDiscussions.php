@@ -9,9 +9,9 @@
 
 namespace Flarum\Subscriptions\Event;
 
-use Illuminate\Database\Query\Builder;
 use Flarum\Search\AbstractSearch;
 use Flarum\User\User;
+use Illuminate\Database\Query\Builder;
 
 class SearchingSubscribedDiscussions
 {
