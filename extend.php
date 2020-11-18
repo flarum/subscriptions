@@ -45,22 +45,18 @@ return [
             }
         }),
 
-    function (Dispatcher $events) {
-        $events->listen(Saving::class, Listener\SaveSubscriptionToDatabase::class);
-
-        $events->listen(ConfigureDiscussionGambits::class, function (ConfigureDiscussionGambits $event) {
+    (new Extend\Event())
+        ->listen(Saving::class, Listener\SaveSubscriptionToDatabase::class)
+        ->listen(ConfigureDiscussionGambits::class, function (ConfigureDiscussionGambits $event) {
             $event->gambits->add(SubscriptionGambit::class);
-        });
-        $events->listen(Searching::class, Listener\FilterDiscussionListBySubscription::class);
-
-        $events->listen(Posted::class, Listener\SendNotificationWhenReplyIsPosted::class);
-        $events->listen(Hidden::class, Listener\DeleteNotificationWhenPostIsHiddenOrDeleted::class);
-        $events->listen(Restored::class, Listener\RestoreNotificationWhenPostIsRestored::class);
-        $events->listen(Deleted::class, Listener\DeleteNotificationWhenPostIsHiddenOrDeleted::class);
-
-        $events->listen(ConfigureUserPreferences::class, function (ConfigureUserPreferences $event) {
+        })
+        ->listen(Searching::class, Listener\FilterDiscussionListBySubscription::class)
+        ->listen(Posted::class, Listener\SendNotificationWhenReplyIsPosted::class)
+        ->listen(Hidden::class, Listener\DeleteNotificationWhenPostIsHiddenOrDeleted::class)
+        ->listen(Restored::class, Listener\RestoreNotificationWhenPostIsRestored::class)
+        ->listen(Deleted::class, Listener\DeleteNotificationWhenPostIsHiddenOrDeleted::class)
+        ->listen(ConfigureUserPreferences::class, function (ConfigureUserPreferences $event) {
             $event->add('followAfterReply', 'boolval', false);
-        });
-        $events->listen(Posted::class, Listener\FollowAfterReply::class);
-    }
+        })
+        ->listen(Posted::class, Listener\FollowAfterReply::class),
 ];
