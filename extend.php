@@ -7,8 +7,9 @@
  * LICENSE file that was distributed with this source code.
  */
 
-use Flarum\Api\Event\Serializing;
 use Flarum\Api\Serializer\BasicDiscussionSerializer;
+use Flarum\Api\Serializer\DiscussionSerializer;
+use Flarum\Discussion\Discussion;
 use Flarum\Discussion\Event\Saving;
 use Flarum\Discussion\Event\Searching;
 use Flarum\Event\ConfigureDiscussionGambits;
@@ -37,8 +38,14 @@ return [
     (new Extend\Notification())
         ->type(NewPostBlueprint::class, BasicDiscussionSerializer::class, ['alert', 'email']),
 
+    (new Extend\ApiSerializer(DiscussionSerializer::class))
+        ->attribute('subscription', function (array $attributes, Discussion $discussion, DiscussionSerializer $serializer) {
+            if ($state = $discussion->state) {
+                return $state->subscription ?: false;
+            }
+        }),
+
     function (Dispatcher $events) {
-        $events->listen(Serializing::class, Listener\AddDiscussionSubscriptionAttribute::class);
         $events->listen(Saving::class, Listener\SaveSubscriptionToDatabase::class);
 
         $events->listen(ConfigureDiscussionGambits::class, function (ConfigureDiscussionGambits $event) {
