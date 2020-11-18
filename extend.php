@@ -22,7 +22,6 @@ use Flarum\Post\Event\Restored;
 use Flarum\Subscriptions\Gambit\SubscriptionGambit;
 use Flarum\Subscriptions\Listener;
 use Flarum\Subscriptions\Notification\NewPostBlueprint;
-use Illuminate\Contracts\Events\Dispatcher;
 
 return [
     (new Extend\Frontend('forum'))
