@@ -1,7 +1,7 @@
 import { extend } from 'flarum/extend';
 import LinkButton from 'flarum/components/LinkButton';
 import IndexPage from 'flarum/components/IndexPage';
-import DiscussionListState from 'flarum/states/DiscussionListState';
+import GlobalSearchState from 'flarum/states/GlobalSearchState';
 
 export default function addSubscriptionFilter() {
   extend(IndexPage.prototype, 'navItems', function(items) {
@@ -21,9 +21,9 @@ export default function addSubscriptionFilter() {
     }
   });
 
-  extend(DiscussionListState.prototype, 'requestParams', function(params) {
+  extend(GlobalSearchState.prototype, 'params', function(params) {
     if (app.current.get('routeName') === 'following') {
-      params.filter.q = (params.filter.q || '') + ' is:following';
+      params.q = (params.q || '') + ' is:following';
     }
   });
 }
