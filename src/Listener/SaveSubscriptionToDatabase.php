@@ -26,7 +26,7 @@ class SaveSubscriptionToDatabase
 
             $state = $discussion->stateFor($actor);
 
-            if (! in_array($subscription, ['follow', 'ignore'])) {
+            if (!in_array($subscription, ['follow', 'ignore'])) {
                 $subscription = null;
             }
 

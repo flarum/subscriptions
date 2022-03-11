@@ -31,7 +31,7 @@ return [
 
     new Extend\Locales(__DIR__.'/locale'),
 
-    (new Extend\View)
+    (new Extend\View())
         ->namespace('flarum-subscriptions', __DIR__.'/views'),
 
     (new Extend\Notification())
