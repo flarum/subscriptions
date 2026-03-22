@@ -8,7 +8,7 @@ export default function () {
     items.add(
       'followAfterReply',
       <Switch
-        state={this.user!.preferences()?.followAfterReply}
+        state={!!this.user?.preferences()?.followAfterReply}
         onchange={(value: boolean) => {
           this.followAfterReplyLoading = true;
 
@@ -20,6 +20,24 @@ export default function () {
         loading={this.followAfterReplyLoading}
       >
         {app.translator.trans('flarum-subscriptions.forum.settings.follow_after_reply_label')}
+      </Switch>
+    );
+
+    items.add(
+      'followAfterCreate',
+      <Switch
+        state={!!this.user?.preferences()?.followAfterCreate}
+        onchange={(value: boolean) => {
+          this.followAfterCreateLoading = true;
+
+          this.user!.savePreferences({ followAfterCreate: value }).then(() => {
+            this.followAfterCreateLoading = false;
+            m.redraw();
+          });
+        }}
+        loading={this.followAfterCreateLoading}
+      >
+        {app.translator.trans('flarum-subscriptions.forum.settings.follow_after_create_label')}
       </Switch>
     );
 
